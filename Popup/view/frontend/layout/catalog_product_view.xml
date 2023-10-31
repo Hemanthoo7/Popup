@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="hyva_modal"/>
+        <body>
+            <referenceBlock name="product.info.main">
+                <block class="Dcw\Popup\Block\Popup" name="popup" template="Dcw_Popup::popup.phtml"/>
+            </referenceBlock>
+            <!-- <move element="popup" destination="product.info.form" after="-"/> -->
+        </body>
+</page>

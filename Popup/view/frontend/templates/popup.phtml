@@ -1,0 +1,64 @@
+<?php
+
+/** @var \Magento\Framework\Escaper $escaper */
+/** @var \Hyva\Theme\Model\ViewModelRegistry $viewModels */
+/** @var \Hyva\Theme\ViewModel\Modal $modalViewModel */
+$modalViewModel = $viewModels->require(\Hyva\Theme\ViewModel\Modal::class);
+
+?>
+
+<div
+  x-data="{ 'showModal': false }"
+  @keydown.escape="showModal = false"
+>
+    
+    <button type="button" @click="showModal = true">Click Here</button>
+
+    <div
+        class="fixed inset-0 z-30 flex items-center justify-center overflow-auto bg-black bg-opacity-50"
+        x-show="showModal"
+    >
+        <div
+            class="max-w-3xl px-6 py-4 mx-auto text-left bg-white rounded shadow-lg"
+            @click.away="showModal = false"
+            x-transition:enter="motion-safe:ease-out duration-300"
+            x-transition:enter-start="opacity-0 scale-90"
+            x-transition:enter-end="opacity-100 scale-100"
+        >
+        
+        <?php echo $this->getStaticBlockContent('shipping-schedule'); ?>
+    
+    <button @click="showModal = false" class="bg-gray-400 hover:bg-gray-600 text-black font-bold py-2 px-4 rounded mt-4">
+        Close
+    </button>
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.x.x/dist/alpine.min.js" defer></script>
+
+<div x-data="{
+    location: '',
+    getLocation: function () {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                
+                var latitude = position.coords.latitude;
+                var longitude = position.coords.longitude;
+                var geocoder = new google.maps.Geocoder();
+                var latlng = new google.maps.LatLng(latitude, longitude);                
+                geocoder.geocode({ 'latLng': latlng }, function (results, status) {
+                    if (status === google.maps.GeocoderStatus.OK) {
+                        if (results[0]) {
+                            Alpine.store('location', results[0].formatted_address);
+                        } else {
+                            Alpine.store('location', 'Location not found');
+                        }
+                    } 
+                });
+            });
+        }
+    },
+}" x-init="getLocation()">
+</div> -->
